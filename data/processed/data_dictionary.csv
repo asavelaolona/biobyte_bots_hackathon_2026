@@ -1,0 +1,31 @@
+column_pattern,type,meaning,recommended_use
+year_month,Date,"Month of observation, stored as the first day of the month.",Primary join key and time-series index.
+year,Integer,Calendar year extracted from year_month.,"Trend, split, or reporting feature."
+month,Integer,Calendar month number from 1 to 12.,Seasonality feature.
+"month_sin, month_cos",Numeric,Cyclical encoding of month.,Seasonality features for machine learning models.
+target_food_price_inflation,Numeric,"Botswana food price inflation, equal to FAO item 23014.",Main target variable to forecast.
+fao_cp_23012,Numeric,"Botswana general consumer price index, 2015 equals 100.",Inflation and price-level feature.
+fao_cp_23013,Numeric,"Botswana food consumer price index, 2015 equals 100.",Core food price-level feature.
+fao_cp_23014,Numeric,Original FAO food price inflation field.,Same value as target_food_price_inflation.
+fao_food_index_mom_pct,Numeric,Month-on-month percentage change in Botswana food CPI.,Momentum feature.
+fao_food_index_yoy_pct_calc,Numeric,Calculated year-on-year percentage change in Botswana food CPI.,Audit feature for FAO_CP_23014.
+bdi_close_mean,Numeric,Monthly average Baltic Dry Index close.,Shipping cost / supply-chain feature.
+bdi_close_sd,Numeric,Within-month standard deviation of BDI close.,Shipping volatility feature.
+"bdi_close_min, bdi_close_max",Numeric,Monthly minimum and maximum BDI close.,Stress and range features.
+"bdi_close_first, bdi_close_last",Numeric,First and last BDI close observed in the month.,Monthly direction features.
+bdi_close_range,Numeric,Monthly BDI max minus min.,Shipping volatility feature.
+bdi_close_change_abs,Numeric,Last BDI close minus first BDI close within a month.,Shipping momentum feature.
+bdi_close_change_pct,Numeric,Percentage change from first to last BDI close within a month.,Shipping momentum feature.
+"bdi_high_mean, bdi_low_mean",Numeric,Monthly average of BDI daily highs and lows.,Alternative shipping pressure features.
+bdi_trading_days,Integer,Number of BDI trading-day observations in the month.,Data quality / calendar feature.
+brent_usd_per_barrel,Numeric,Monthly Brent crude oil price in US dollars per barrel.,Fuel and transport-cost feature.
+brent_mom_pct,Numeric,Month-on-month percentage change in Brent.,Oil momentum feature.
+brent_yoy_pct,Numeric,Year-on-year percentage change in Brent.,Oil shock feature.
+policy_rate,Numeric,Bank of Botswana policy interest rate in percent.,Monetary-policy feature.
+policy_rate_change_1m,Numeric,One-month change in the policy rate.,Policy tightening/easing feature.
+policy_rate_change_12m,Numeric,Twelve-month change in the policy rate.,Policy stance feature.
+hcp_<country>_fao_cp_23012,Numeric,General CPI for Botswana or comparator countries.,Cross-country price-pressure feature.
+hcp_<country>_fao_cp_23013,Numeric,Food CPI for Botswana or comparator countries.,Cross-country food-price feature.
+hcp_<country>_fao_cp_23014,Numeric,Food price inflation for Botswana or comparator countries.,Cross-country inflation spillover feature.
+"*_lag1, *_lag2, *_lag3, *_lag6, *_lag12",Numeric,"Lagged value of the source column by 1, 2, 3, 6, or 12 months.",Forecasting-safe features when predicting future months.
+"*_roll3_mean, *_roll6_mean, *_roll12_mean",Numeric,"Trailing rolling average over 3, 6, or 12 months.",Smoothing and trend features.
