@@ -34,7 +34,7 @@ pip install -r requirements.txt
 
 Run in order — each notebook depends on outputs from the previous one:
 
-1. **01 (R)** — merges raw source datasets into a monthly feature table
+1. **01_merge_hackathon_data.R — merges raw source datasets into a monthly feature table
 2. **02_feature_engineering.ipynb** — cleans and engineers features, produces
    `data/processed/model_ready_data.csv`
 3. **03_model_ets_arima.ipynb** — fits ETS and SARIMAX baseline models,
