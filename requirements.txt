@@ -1,7 +1,9 @@
-pandas
-numpy
-matplotlib
-seaborn
-scikit-learn
-statsmodels
-torch
+pandas>=3.0.2
+numpy>=2.4.4
+matplotlib>=3.10.8
+seaborn>=0.13.2
+scikit-learn>=1.8.0
+statsmodels>=0.14.6
+pmdarima>=2.1.1
+xgboost>=2.0.3
+torch>=2.2.2
