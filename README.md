@@ -30,6 +30,7 @@ earlier SARIMA baseline, improving RMSE but still not outperforming the LSTM.
 ## Setup
 
 ```bash
+install.packages(readLines("r_requirements.txt"))
 pip install -r requirements.txt
 ```
 
