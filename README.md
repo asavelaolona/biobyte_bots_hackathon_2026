@@ -3,7 +3,9 @@
 A time-series forecasting project combining macroeconomic and commodity
 indicators (Baltic Dry Index, Brent crude, Botswana policy rate, FAO food
 prices, human capital data) into a monthly feature set, used to train and
-compare ETS/ARIMA and deep learning (LSTM) forecasting models.
+compare a classical baseline (XGBoost) and a deep learning (LSTM) model —
+LSTM is the final model used for submitted predictions; XGBoost replaced an
+earlier SARIMA baseline, improving RMSE but still not outperforming the LSTM.
 
 ## Project structure
 
@@ -12,10 +14,11 @@ compare ETS/ARIMA and deep learning (LSTM) forecasting models.
 │   ├── raw/            # Original source data (unmodified)
 │   └── processed/      # Cleaned, merged, and feature-engineered data
 ├── notebooks/
-│   ├── 01_...           # Data merging (R)
+│   ├── 01_merge_hackathon_data.R         # Data merging (R)
 │   ├── 02_feature_engineering.ipynb
 │   ├── 03_model_ets_arima.ipynb
-│   └── 04_model_dnn.ipynb
+│   ├── 04_model_dnn.ipynb
+│   └── 05_hcp_granger_causality.ipynb
 ├── models/              # Saved trained model weights (.pth)
 ├── outputs/
 │   ├── figures/          # Generated plots
@@ -34,14 +37,16 @@ pip install -r requirements.txt
 
 Run in order — each notebook depends on outputs from the previous one:
 
-1. **01 (R)** — merges raw source datasets into a monthly feature table
-2. **02_feature_engineering.ipynb** — cleans and engineers features, produces
+1. **01_merge_hackathon_data.R** — merges raw source datasets into a monthly feature table
+3. **02_feature_engineering.ipynb** — cleans and engineers features, produces
    `data/processed/model_ready_data.csv`
-3. **03_model_ets_arima.ipynb** — fits ETS and SARIMAX baseline models,
+4. **03_model_ets_arima.ipynb** — fits ETS and SARIMAX baseline models,
    saves diagnostic plots to `outputs/figures/`
-4. **04_model_dnn.ipynb** — trains an LSTM model, saves weights to `models/`,
+5. **04_model_dnn.ipynb** — trains an LSTM model, saves weights to `models/`,
    saves training/prediction plots to `outputs/figures/`, and writes final
    predictions to `outputs/predictions.csv`
+6. **05_hcp_granger_causality.ipynb** — uses the final LSTM predictions to
+   run Granger causality analysis for the HCP linkage section
 
 ## Data sources
 
