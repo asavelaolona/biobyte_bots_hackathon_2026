@@ -5,3 +5,9 @@ seaborn
 scikit-learn
 statsmodels>=0.14.6
 torch
+readr
+dplyr
+tidyr
+lubridate
+janitor
+zoo
